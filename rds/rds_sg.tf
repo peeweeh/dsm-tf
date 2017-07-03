@@ -5,9 +5,10 @@ resource "aws_security_group" "dsm_rds" {
 
   # HTTP access from the VPC
   ingress {
-    from_port       = 5432
-    to_port         = 5433
-    protocol        = "tcp"
+    from_port = 5432
+    to_port   = 5433
+    protocol  = "tcp"
+
     #security_groups = ["${var.access_security_group_ids}"]
     cidr_blocks = ["${var.vpc_cidr}"]
   }

@@ -44,13 +44,12 @@ variable "admin_sg" {
 
 output "ec2_security_group" {
   value = "${aws_security_group.dsm_ec2.id}"
-
 }
-
 
 variable "license_key" {
   default = ""
 }
+
 variable "db_master" {
   default = ""
 }
@@ -58,6 +57,7 @@ variable "db_master" {
 variable "db_host" {
   default = ""
 }
+
 variable "db_password" {
   default = ""
 }

@@ -3,30 +3,27 @@ resource "aws_iam_role_policy" "dsm_role_policy" {
   role = "${aws_iam_role.dsm_role.id}"
 
   policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  {
+    "Version": "2012-10-17",
+    "Statement": [
     {
       "Action": [
-        "ec2:Describe*",
-        "sns:publish*",
-        "iam:ListAccountAliases",
-        "s3:get*",
-        "kms:Encrypt",
-        "kms:Decrypt",
-        "kms:ReEncrypt*",
-        "kms:GenerateDataKey*",
-        "kms:DescribeKey",
-        "iam:ListUsers",
-        "iam:ListSSHPublicKeys",
-        "iam:GetSSHPublicKey"
+      "ec2:Describe*",
+      "sns:publish*",
+      "iam:ListAccountAliases",
+      "s3:get*",
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
       ],
       "Effect": "Allow",
       "Resource": "*"
     }
-  ]
-}
-EOF
+    ]
+  }
+  EOF
 }
 
 resource "aws_iam_role_policy_attachment" "dsm_ssm_attach" {
@@ -38,20 +35,20 @@ resource "aws_iam_role" "dsm_role" {
   name = "${var.project}-${var.env}-dsm-role"
 
   assume_role_policy = <<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
+  {
+    "Version": "2012-10-17",
+    "Statement": [
     {
       "Action": "sts:AssumeRole",
       "Principal": {
         "Service": "ec2.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
+        },
+        "Effect": "Allow",
+        "Sid": ""
+      }
+      ]
     }
-  ]
-}
-EOF
+    EOF
 }
 
 resource "aws_iam_instance_profile" "dsm_profile" {
